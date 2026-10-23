@@ -1,0 +1,1 @@
+Smooth motion blur for OpenGL and VulkanMod, an ender pearl camera glide, and a crystal PvP guard that keeps the screen readable. Client-side only, one config file, no server involvement.

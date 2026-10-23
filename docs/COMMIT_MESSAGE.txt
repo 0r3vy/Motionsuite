@@ -1,0 +1,11 @@
+feat: add Motion Suite 2.0.0
+
+Client-side Fabric mod for Minecraft 1.21.11 with a motion blur for OpenGL
+and VulkanMod, an ender pearl camera glide and a crystal PvP guard.
+
+- Frame-blending blur with an adaptive mode and a ghost-free shader
+- Pearl camera glide with separate first and third person speeds
+- Crystal guard that tightens the camera and eases the blur
+- Blur history reset on respawn, dimension change and teleport
+- One config file, config/motionsuite.json, with clamped values
+- Commands: /motionblur, /motioncamera, /motionsuite
