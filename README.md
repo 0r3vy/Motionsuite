@@ -11,6 +11,7 @@ Source and issues: https://github.com/0r3vy/Motionsuite
 - Strength from 0 to 100 percent
 - Adaptive mode keeps the length of the blur constant in time, so it feels the same at 60 and at 240 FPS
 - Cheap shader math and a fix for faint trails that would otherwise never fade
+- Smart blur (optional): the blur follows how much you turn and move, and stays sharp while you stand still. With "Blur when still" at 0 the blur pass is skipped completely while idle, which saves GPU time
 - Stays out of the way of other post effects, such as the spectator creeper view
 
 ### Ender pearl camera
@@ -21,7 +22,11 @@ Source and issues: https://github.com/0r3vy/Motionsuite
 
 ### Crystal guard
 - Holding an end crystal, or aiming at a crystal, obsidian or bedrock, makes the camera follow you tightly
-- The blur eases off at the same time, so crystal fights stay sharp
+- Optionally eases the blur at the same time, so crystal fights stay sharp (off by default)
+
+### Hub
+- Press **M** (rebindable under Controls, category Motion Suite) to open a settings screen with a slider or toggle for every option, so no commands are needed
+- On OpenGL the blur keeps running behind the hub, so you can judge a change at once
 
 ### Clean cuts
 - When the view jumps, for example after a respawn, a dimension change or a teleport, the blur forgets the previous frame so no ghost of the old place is left on screen
@@ -36,6 +41,7 @@ Everything is visual and runs on your client only. Nothing is sent to the server
 - Fabric API
 - Java 21
 - VulkanMod is optional
+- Mod Menu is optional and adds a Configure button that opens the settings screen
 
 ## Installation
 
@@ -43,40 +49,18 @@ Everything is visual and runs on your client only. Nothing is sent to the server
 2. Put the Motion Suite jar in your `mods` folder.
 3. Start the game and use the commands below to adjust the settings.
 
+## Settings screen
+
+Press **M** in game, run `/motionsuite`, or open Mod Menu, select Motion Suite and press its **Configure** button (Mod Menu is optional). Every option is available there as a slider or toggle, and changes are saved when you close the screen.
+
 ## Commands
 
-### Blur
+The settings screen replaces the old per-option commands. Two commands remain:
 
 | Command | Effect |
 | --- | --- |
-| `/motionblur` | Show the blur settings |
-| `/motionblur <0-100>` | Blur strength in percent, 0 turns it off |
-| `/motionblur adaptive on\|off` | Keep the blur length constant when the frame rate changes |
-| `/motionblur guardcut <0-100>` | How much the blur is reduced while the crystal guard is active |
-
-### Camera
-
-| Command | Effect |
-| --- | --- |
-| `/motioncamera` or `/motioncamera status` | Show the camera settings |
-| `/motioncamera toggle` | Turn the pearl glide on or off |
-| `/motioncamera guard` | Turn the crystal guard on or off |
-| `/motioncamera speed <0.02-1>` | Glide speed in third person |
-| `/motioncamera fpspeed <0.02-1>` | Glide speed in first person |
-| `/motioncamera maxoffset <0-64>` | Largest allowed lag in blocks, 0 means 64 |
-| `/motioncamera guardoffset <0.1-8>` | Largest allowed lag while the guard is active |
-| `/motioncamera guardspeed <0.02-1>` | Glide speed while the guard is active |
-| `/motioncamera duration <100-10000>` | How long the glide lasts after the last pearl, in milliseconds |
-| `/motioncamera reload` | Reload the config file |
-
-### Overview
-
-| Command | Effect |
-| --- | --- |
-| `/motionsuite` or `/motionsuite status` | Show every setting at once |
-| `/motionsuite reload` | Reload the config file |
-
-Any option run without a value prints its current setting.
+| `/motionsuite` or `/motionsuite hub` | Open the settings screen |
+| `/motionsuite reload` | Reload `config/motionsuite.json` after editing it by hand |
 
 ## Configuration
 
@@ -87,7 +71,9 @@ Settings are stored in `config/motionsuite.json`. Defaults:
   "blur": {
     "amount": 50,
     "adaptive": false,
-    "guardCut": 60
+    "guardCut": 0,
+    "smart": false,
+    "stillBlur": 35
   },
   "camera": {
     "enabled": true,
