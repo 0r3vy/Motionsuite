@@ -1,11 +1,18 @@
-feat: add Motion Suite 2.0.0
+feat!: release Motion Suite 3.5.1
 
-Client-side Fabric mod for Minecraft 1.21.11 with a motion blur for OpenGL
-and VulkanMod, an ender pearl camera glide and a crystal PvP guard.
+Major update from 3.0.0 to 3.5.1 for Minecraft 1.21.11.
 
-- Frame-blending blur with an adaptive mode and a ghost-free shader
-- Pearl camera glide with separate first and third person speeds
-- Crystal guard that tightens the camera and eases the blur
-- Blur history reset on respawn, dimension change and teleport
-- One config file, config/motionsuite.json, with clamped values
-- Commands: /motionblur, /motioncamera, /motionsuite
+- Add Render Optimizer: fullbright (Night Vision/Gamma), no weather, no item bounce, hurt tilt/fire/cloud/particle/HUD toggles
+- Add farm lag reducers: remove TNT, item drops, XP orbs, thrown items, far entity cull, block render cull (70 blocks), 29-group sound cull
+- Add free look and command key macros (up to 4 slots) with per-server text
+- Add smart blur, adaptive blend and render budget
+- Add in-game hub (M) with all settings and key binds, plus ModMenu integration
+- Add English and Vietnamese lang files
+- Split config into per-feature classes with ConfigManager and ConfigSnapshot
+- Restructure code into feature, core, ui, input and data packages with new mixins
+- Move VulkanMod support into a separate src/vk source set
+- Add unit tests for adaptive blend, command key config and sound groups
+- Migrate Gradle to Kotlin DSL and update Loom 1.16-SNAPSHOT to 1.16.3
+- Add docs/RELEASE.md
+
+BREAKING CHANGE: /motionblur and /motioncamera are removed; /motionsuite now only provides hub and reload.
