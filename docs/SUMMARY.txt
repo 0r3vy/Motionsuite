@@ -1,1 +1,1 @@
-Smooth motion blur for OpenGL and VulkanMod, an ender pearl camera glide, and a crystal PvP guard that keeps the screen readable. Client-side only, one config file, no server involvement.
+Smooth motion blur for OpenGL and VulkanMod, an ender pearl camera glide, a crystal PvP guard, a render optimizer with tunable fullbright, TNT explode removal, item drop removal, a farm lag guard with per-block freezing and a 29 group sound cull, free look and key-bound command macros. Client-side only, one config file.

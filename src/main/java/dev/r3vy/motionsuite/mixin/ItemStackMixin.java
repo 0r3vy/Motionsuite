@@ -1,0 +1,19 @@
+package dev.r3vy.motionsuite.mixin;
+
+import dev.r3vy.motionsuite.Runtime;
+import dev.r3vy.motionsuite.config.RenderToggle;
+import net.minecraft.item.ItemStack;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+@Mixin(ItemStack.class)
+public abstract class ItemStackMixin {
+    @Inject(method = "getBobbingAnimationTime", at = @At("HEAD"), cancellable = true)
+    private void motionsuite$noBounce(CallbackInfoReturnable<Integer> cir) {
+        if (Runtime.config().render().hides(RenderToggle.NO_BOUNCE)) {
+            cir.setReturnValue(0);
+        }
+    }
+}

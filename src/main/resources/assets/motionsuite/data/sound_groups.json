@@ -1,0 +1,33 @@
+{
+    "groups": [
+        { "key": "redstoneTorch", "exact": ["block.redstone_torch.burnout"] },
+        { "key": "pistons", "exact": ["block.piston.extend", "block.piston.contract"] },
+        { "key": "noteBlocks", "prefixes": ["block.note_block."] },
+        { "key": "fire", "exact": ["block.furnace.fire_crackle"], "prefixes": ["block.fire.", "block.campfire."] },
+        { "key": "smelters", "prefixes": ["block.brewing_stand.", "block.blast_furnace.", "block.smoker.", "block.crafter."] },
+        { "key": "dispensers", "exact": ["block.dispenser.dispense", "block.dispenser.fail", "block.dispenser.launch"] },
+        { "key": "lava", "exact": ["block.lava.pop", "block.lava.extinguish"] },
+        { "key": "anvils", "prefixes": ["block.anvil."] },
+        { "key": "bells", "prefixes": ["block.bell."] },
+        { "key": "amethyst", "prefixes": ["block.amethyst_block."] },
+        { "key": "dripstone", "prefixes": ["block.pointed_dripstone."] },
+        { "key": "portals", "prefixes": ["block.portal."] },
+        { "key": "tripwire", "prefixes": ["block.tripwire."] },
+        { "key": "composter", "prefixes": ["block.composter."] },
+        { "key": "sculk", "prefixes": ["block.sculk_sensor.", "block.sculk_catalyst.", "block.sculk_shrieker."] },
+        { "key": "bees", "prefixes": ["entity.bee.", "block.beehive."] },
+        { "key": "villagers", "prefixes": ["entity.villager."] },
+        { "key": "piglins", "prefixes": ["entity.piglin.", "entity.zombified_piglin."] },
+        { "key": "otherMobs", "exact": ["entity.chicken.egg"], "prefixes": ["entity.allay.", "entity.axolotl.", "entity.frog.", "entity.witch.", "entity.iron_golem."] },
+        { "key": "carts", "prefixes": ["entity.minecart.", "entity.boat."] },
+        { "key": "doors", "exact": ["entity.zombie.attack_wooden_door", "entity.zombie.break_wooden_door", "entity.zombie.attack_iron_door"] },
+        { "key": "monsters", "exact": ["entity.wither.spawn", "entity.wither.break_block", "entity.creeper.primed", "entity.guardian.attack", "entity.enderman.teleport"], "prefixes": ["entity.lightning_bolt."] },
+        { "key": "pickups", "exact": ["entity.item.pickup", "entity.experience_orb.pickup"] },
+        { "key": "expLevelUp", "exact": ["entity.player.levelup"] },
+        { "key": "expThrow", "exact": ["entity.experience_bottle.throw"] },
+        { "key": "blockActions", "suffixes": [".break", ".place"] },
+        { "key": "openClose", "suffixes": [".open", ".close"] },
+        { "key": "mobVoices", "suffixes": [".ambient", ".hurt", ".death"] },
+        { "key": "mobActions", "suffixes": [".shoot", ".flop", ".jump", ".squish", ".squirt", ".shear"] }
+    ]
+}

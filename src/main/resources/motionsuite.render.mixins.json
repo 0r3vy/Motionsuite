@@ -1,0 +1,27 @@
+{
+    "required": false,
+    "minVersion": "0.8",
+    "priority": 1100,
+    "package": "dev.r3vy.motionsuite.mixin",
+    "compatibilityLevel": "JAVA_21",
+    "client": [
+        "ClientPlayNetworkHandlerMixin",
+        "ClientPlayerInteractionManagerMixin",
+        "ClientWorldMixin",
+        "CloudRenderMixin",
+        "EntityRendererMixin",
+        "GameRendererHooksMixin",
+        "InGameHudMixin",
+        "InGameOverlayRendererMixin",
+        "ItemStackMixin",
+        "LightmapTextureMixin",
+        "ParticleManagerMixin",
+        "PistonBlockEntityRendererMixin",
+        "ScreenMixin",
+        "SoundManagerMixin",
+        "WeatherRenderingMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}

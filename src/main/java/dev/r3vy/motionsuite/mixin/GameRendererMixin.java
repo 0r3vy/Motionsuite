@@ -8,24 +8,24 @@ import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(GameRenderer.class)
 public abstract class GameRendererMixin implements PostEffectControl {
-    @Shadow(aliases = {"postProcessorId", "postEffectId", "field_53898"})
-    private Identifier effectId;
+    @Shadow
+    private Identifier postProcessorId;
 
-    @Shadow(aliases = {"postProcessorEnabled", "effectActive", "field_4013"})
-    private boolean effectEnabled;
+    @Shadow
+    private boolean postProcessorEnabled;
 
     @Override
     public Identifier motionsuite$getEffectId() {
-        return effectId;
+        return postProcessorId;
     }
 
     @Override
     public void motionsuite$setEffectId(Identifier id) {
-        effectId = id;
+        postProcessorId = id;
     }
 
     @Override
     public void motionsuite$setEffectActive(boolean active) {
-        effectEnabled = active;
+        postProcessorEnabled = active;
     }
 }

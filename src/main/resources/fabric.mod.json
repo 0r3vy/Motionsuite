@@ -1,38 +1,46 @@
 {
-	"schemaVersion": 1,
-	"id": "motionsuite",
-	"version": "${version}",
-	"name": "Motion Suite",
-	"description": "Motion blur (OpenGL and VulkanMod) merged with ender pearl camera smoothing and crystal PvP guard. Client-side, visual only.",
-	"authors": [
-		"r3vy"
-	],
-	"contact": {
-		"homepage": "https://github.com/0r3vy/Motionsuite",
-		"sources": "https://github.com/0r3vy/Motionsuite",
-		"issues": "https://github.com/0r3vy/Motionsuite/issues"
-	},
-	"license": "MIT",
-	"icon": "assets/motionsuite/icon.png",
-	"environment": "client",
-	"entrypoints": {
-		"client": [
-			"dev.r3vy.motionsuite.MbClient"
-		]
-	},
-	"mixins": [
-		{
-			"config": "motionsuite.client.mixins.json",
-			"environment": "client"
-		}
-	],
-	"depends": {
-		"fabricloader": ">=0.18.1",
-		"minecraft": "~1.21.11",
-		"java": ">=21",
-		"fabric-api": "*"
-	},
-	"suggests": {
-		"vulkanmod": "*"
-	}
+    "schemaVersion": 1,
+    "id": "motionsuite",
+    "version": "${version}",
+    "name": "Motion Suite",
+    "description": "Motion blur (OpenGL and VulkanMod), ender pearl camera glide with crystal guard, a render optimizer with fullbright, TNT explode removal, item drop removal and lag reducers for idling at farms, free look and key-bound command macros with per-server text. Client-side. by r3vy",
+    "authors": [
+        "r3vy"
+    ],
+    "contact": {
+        "homepage": "https://github.com/0r3vy/Motionsuite",
+        "sources": "https://github.com/0r3vy/Motionsuite",
+        "issues": "https://github.com/0r3vy/Motionsuite/issues"
+    },
+    "license": "MIT",
+    "icon": "assets/motionsuite/icon.png",
+    "environment": "client",
+    "entrypoints": {
+        "client": [
+            "dev.r3vy.motionsuite.MotionSuite"
+        ],
+        "modmenu": [
+            "dev.r3vy.motionsuite.ModMenuIntegration"
+        ]
+    },
+    "mixins": [
+        {
+            "config": "motionsuite.client.mixins.json",
+            "environment": "client"
+        },
+        {
+            "config": "motionsuite.render.mixins.json",
+            "environment": "client"
+        }
+    ],
+    "depends": {
+        "fabricloader": ">=0.19.2",
+        "minecraft": "~1.21.11",
+        "java": ">=21",
+        "fabric-api": ">=0.140.0"
+    },
+    "suggests": {
+        "vulkanmod": "*",
+        "modmenu": "*"
+    }
 }

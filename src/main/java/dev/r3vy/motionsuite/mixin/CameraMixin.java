@@ -1,32 +1,44 @@
 package dev.r3vy.motionsuite.mixin;
 
-import dev.r3vy.motionsuite.camera.CameraSmoother;
-import net.minecraft.client.MinecraftClient;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import dev.r3vy.motionsuite.Runtime;
+import dev.r3vy.motionsuite.core.FaultGate;
 import net.minecraft.client.render.Camera;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.ModifyArgs;
-import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
 @Mixin(Camera.class)
 public abstract class CameraMixin {
-    @ModifyArgs(
-            method = {"update", "method_19321"},
+    @WrapOperation(
+            method = "update",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/Camera;setPos(DDD)V"))
-    private void motionsuite$smoothPosition(Args args) {
+    private void motionsuite$smoothPosition(Camera camera, double x, double y, double z, Operation<Void> original) {
+        double[] smoothed;
         try {
-            double x = args.get(0);
-            double y = args.get(1);
-            double z = args.get(2);
-            double[] smoothed = CameraSmoother.apply(MinecraftClient.getInstance(), x, y, z);
-            if (smoothed == null || Double.isNaN(smoothed[0]) || Double.isNaN(smoothed[1]) || Double.isNaN(smoothed[2])) {
-                return;
-            }
-            args.set(0, smoothed[0]);
-            args.set(1, smoothed[1]);
-            args.set(2, smoothed[2]);
+            smoothed = Runtime.glide().apply(Runtime.config(), x, y, z, Runtime.blend());
         } catch (RuntimeException error) {
-            CameraSmoother.fail("camera", error);
+            Runtime.faults().record(FaultGate.Channel.CAMERA, "camera", error);
+            original.call(camera, x, y, z);
+            return;
         }
+        if (smoothed == null
+                || Double.isNaN(smoothed[0]) || Double.isNaN(smoothed[1]) || Double.isNaN(smoothed[2])) {
+            original.call(camera, x, y, z);
+            return;
+        }
+        original.call(camera, smoothed[0], smoothed[1], smoothed[2]);
+    }
+
+    @WrapOperation(
+            method = "update",
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/Camera;setRotation(FF)V"))
+    private void motionsuite$freeLook(Camera camera, float yaw, float pitch, Operation<Void> original) {
+        if (!Runtime.look().active()) {
+            original.call(camera, yaw, pitch);
+            return;
+        }
+        float[] look = Runtime.look().cameraLook(yaw);
+        original.call(camera, look[0], look[1]);
     }
 }
